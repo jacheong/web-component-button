@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements'
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-import { AppComponent } from './app.component';
 import { BasicButtonComponent } from './basic-button/basic-button.component';
 import { RaisedButtonComponent } from './raised-button/raised-button.component';
 import { FlatButtonComponent } from './flat-button/flat-button.component';
@@ -17,7 +17,6 @@ import { DynamicButtonComponent } from './dynamic-button/dynamic-button.componen
 
 @NgModule({
   declarations: [
-    AppComponent,
     BasicButtonComponent,
     RaisedButtonComponent,
     FlatButtonComponent,
@@ -35,8 +34,9 @@ import { DynamicButtonComponent } from './dynamic-button/dynamic-button.componen
     MatIconModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
   entryComponents: [
+    DynamicButtonComponent,
     BasicButtonComponent,
     RaisedButtonComponent,
     FlatButtonComponent,
@@ -44,6 +44,18 @@ import { DynamicButtonComponent } from './dynamic-button/dynamic-button.componen
     IconButtonComponent,
     FabButtonComponent,
     MiniFabButtonComponent,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(
+    private injector: Injector
+  ) {}
+
+  ngDoBootstrap() {
+    const el = createCustomElement(DynamicButtonComponent, {injector: this.injector});
+    customElements.define('dynamic-button', el);
+  }
+}
