@@ -8,7 +8,10 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
     [disabled]="isDisabled"
     (click)="handleClick()"
   >
-    <mat-icon>{{label}}</mat-icon>
+    <ng-container *ngIf="label; else iconTemplate">{{label}}</ng-container>
+    <ng-template #iconTemplate>
+      <mat-icon>{{icon}}</mat-icon>
+    </ng-template> 
   </button>
   `,
 	styleUrls: [ './fab-button.component.scss' ]
@@ -16,6 +19,7 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 export class FabButtonComponent implements OnInit {
 
   @Input() label: string;
+  @Input() icon: string;
   @Input() color: string;
   @Input() isDisabled: boolean;
 

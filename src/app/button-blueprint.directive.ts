@@ -32,6 +32,7 @@ export class ButtonBlueprintDirective implements OnInit {
   @Input() type: string;
   @Input() label: string;
   @Input() color: string;
+  @Input() icon: string;
   @Input() isDisabled: boolean;
   componentRef: any;
 
@@ -48,6 +49,7 @@ export class ButtonBlueprintDirective implements OnInit {
     this.componentRef = this.viewContainerRef.createComponent(factory);
     this.componentRef.instance.label = this.label;
     this.componentRef.instance.color = this.color;
+    this.componentRef.instance.icon = this.icon;
     this.componentRef.instance.isDisabled = this.isDisabled;
   }
 

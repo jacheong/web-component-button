@@ -18,11 +18,11 @@ export class DynamicButtonComponent implements OnInit {
   @Input() type: string;
   @Input() label: string;
   @Input() color: string;
+  @Input() icon: string;
   @Input() isDisabled: boolean;
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }

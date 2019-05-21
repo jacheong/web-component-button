@@ -8,14 +8,14 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
     [disabled]="isDisabled"
     (click)="handleClick()"
   >
-    <mat-icon>{{label}}</mat-icon>
+    <mat-icon>{{icon}}</mat-icon>
   </button>
   `,
 	styleUrls: [ './icon-button.component.scss' ]
 })
 export class IconButtonComponent implements OnInit {
 
-  @Input() label: string;
+  @Input() icon: string;
   @Input() color: string;
   @Input() isDisabled: boolean;
 
