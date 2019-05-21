@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-elements-button';
+  label= "click me";
+  color = "primary";
+  isDisabled = "false";
+  type = "raised";
 }
